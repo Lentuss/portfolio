@@ -1,0 +1,28 @@
+@use "sass:math"
+
+// Alexandria font
++addFontWoff2('Alexandria', '/fonts/Alexandria-Regular.woff2', 400)
++addFontWoff2('Alexandria', '/fonts/Alexandria-Medium.woff2', 500)
++addFontWoff2('Alexandria', '/fonts/Alexandria-Bold.woff2', 700)
++addFontWoff2('Alexandria', '/fonts/Alexandria-ExtraBold.woff2', 800)
++addFontWoff2('Alexandria', '/fonts/Alexandria-Black.woff2', 900)
+
+// Montserrat font
++addFontWoff2('Montserrat', '/fonts/Montserrat-Regular.woff2', 400)
++addFontWoff2('Montserrat', '/fonts/Montserrat-Medium.woff2', 500)
++addFontWoff2('Montserrat', '/fonts/Montserrat-Bold.woff2', 700)
++addFontWoff2('Montserrat', '/fonts/Montserrat-ExtraBold.woff2', 800)
+
+// OpenSans font
++addFontWoff2('OpenSans', '/fonts/OpenSans-Regular.woff2', 400)
++addFontWoff2('OpenSans', '/fonts/OpenSans-SemiBoldItalic.woff2', 600)
+
+// Roboto font
++addFontWoff2('Roboto', '/fonts/Roboto-Regular.woff2', 400)
++addFontWoff2('Roboto', '/fonts/Roboto-Bold.woff2', 700)
+
+// font-mixins
+=size($px, $height: $px)
+  font-size: math.div($px, 16) + rem
+  @if $height
+    line-height: math.div($height, $px)

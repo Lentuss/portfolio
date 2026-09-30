@@ -1,0 +1,41 @@
+.desktop-only
+  +sm
+    display: none
+
+.mobile-only
+  display: none
+  +sm
+    display: block
+
+.cursor-pointer
+  cursor: pointer
+
+html
+  scroll-behavior: smooth
+
+  &.disable-mobile-scroll
+    +r(1199)
+      overflow: hidden
+      height: 100vh
+
+body
+  +useFont('Montserrat', 500)
+  font-size: 18px
+
+  touch-action: manipulation
+  user-scalable: no
+
+.is-hidden
+  display: none
+
+a
+  text-decoration: none
+  color: inherit
+
+h2
+  margin: 24px 0
+  font-size: 48px
+  text-transform: uppercase
+
+.main-page-body .header
+  display: none

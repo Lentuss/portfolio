@@ -1,0 +1,21 @@
+{{!-- BUTTON PROPS --}}
+{{!-- variant="" className="" type="" dataType="" ariaLabel="" withoutArrow= href="" --}}
+
+<{{#if href }}a{{else}}button{{/if}} 
+    class="button button--{{#if variant }}{{variant}}{{else}}green{{/if}} {{className}} {{#unless not-animated}}js-button{{/unless}} {{#unless withoutArrow }}whith-icon{{/unless}} {{#if size }}{{size}}{{/if}}" 
+    {{#if href }}
+        href="{{href}}"
+    {{else}}
+        type="{{#if type }}{{type}}{{else}}button{{/if}}"
+    {{/if}}
+    {{#if dataType }}data-type="{{dataType}}"{{/if}}
+    {{#if ariaLabel }}aria-label="{{ariaLabel}}"{{/if}}
+>
+    <span class="button__content {{#unless not-animated}}js-animated-button-content{{/unless}}">
+        {{> @partial-block }}
+    </span>
+
+    {{#unless withoutArrow }}
+        {{!-- {{ svg "../../assets/icons/arrow-top-right.svg" class="button__icon" }} --}}
+    {{/unless}}
+</{{#if href }}a{{else}}button{{/if}}>

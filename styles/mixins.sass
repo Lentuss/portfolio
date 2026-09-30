@@ -1,0 +1,211 @@
+@use 'sass:math'
+
+=addFont($name, $path, $weight)
+  @font-face
+    font-family: $name
+    src: url($path) format("truetype")
+    font-weight: $weight
+    font-display: swap
+
+=addFontWoff2($name, $path, $weight)
+  @font-face
+    font-family: $name
+    src: url($path) format("woff2")
+    font-weight: $weight
+    font-display: swap
+
+=useFont($name, $weight)
+  font-family: $name, sans-serif
+  font-weight: $weight
+  -webkit-font-smoothing: antialiased
+
+=xxs()
+  @media screen and (max-width: 400px)
+    @content
+
+=xs()
+  @media screen and (max-width: 525px)
+    @content
+
+=sm()
+  @media screen and (max-width: 767px)
+    @content
+
+=md()
+  @media screen and (max-width: 1024px)
+    @content
+
+=lgs()
+  @media screen and (max-width: 1280px)
+    @content
+
+=lg()
+  @media screen and (max-width: 1440px)
+    @content
+
+=xl()
+  @media screen and (max-width: 1680px)
+    @content
+
+=xxl()
+  @media screen and (max-width: 1920px)
+    @content
+
+=r($width)
+  @media only screen and (max-width: $width+ "px")
+    @content
+=rh($width)
+  @media only screen and (max-height: $width+ "px")
+    @content
+=rmin($width)
+  @media only screen and (min-width: $width+ "px")
+    @content
+
+=desktopFontSize($size)
+  font-size: calc(26px + ($size - 26) * ((100vw - 1025px) / (1920 - 1025)))
+
+=highlightLineOnHover()
+  position: relative
+  background: linear-gradient(90deg, #080808 0%, rgba(8, 8, 8, 0) 100%)
+  &:hover
+    &::before
+      content: ''
+      width: 2px
+      height: 100%
+      background: $goldGradient
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+
+@mixin css-lock($min-size: 1, $max-size: 1.4, $min-width: 20, $max-width: 100, $property: font-size, $unit: px)
+  #{$property}: #{$max-size}#{$unit}
+  #{$property}: calc(#{$min-size}#{$unit} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-width}#{$unit}) / (#{$max-width} - #{$min-width})))
+  @media (max-width: #{$min-width}#{$unit})
+    #{$property}: #{$min-size}#{$unit}
+  @media (min-width: #{$max-width}#{$unit})
+    #{$property}: #{$max-size}#{$unit}
+
+=flex($gap: false)
+  display: flex
+
+  @if $gap
+    gap: $gap
+
+=flex-x-center($gap: false)
+  +flex($gap)
+  align-items: center
+
+=flex-y-center($gap: false)
+  +flex($gap)
+  justify-content: center
+
+=flex-center($gap: false)
+  +flex($gap)
+  align-items: center
+  justify-content: center
+
+=styleSvg($size)
+    width: $size
+    height: $size
+
+
+=styleFillSvg($size, $fill, $mobileSize: false, $fillHover: false)
+  +styleSvg($size)
+
+  fill: $fill
+
+  @if $fillHover
+    transition: fill 0.3s ease
+
+    &:hover
+      fill: $fillHover
+
+  @if $mobileSize
+    +sm
+      +styleSvg($mobileSize)
+
+=styleStrokeSvg($size, $stroke, $mobileSize: false, $strokeHover: false)
+  +styleSvg($size)
+
+  stroke: $stroke
+
+  @if $strokeHover
+    transition: stroke 0.3s ease
+
+    &:hover
+      stroke: $strokeHover
+
+  @if $mobileSize
+    +sm
+      +styleSvg($mobileSize)
+      
+=ctaBg($desktopUrl: false, $mobileUrl: false, $overflow: true)
+  position: relative
+
+  @if $desktopUrl
+    background-image: url($desktopUrl)
+    background-color: var(--MainGreen)
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+
+  @if $overflow
+    overflow: hidden
+
+  @if $mobileUrl
+    +md
+        background-image: url($mobileUrl)
+        background-color: var(--MainGreen)
+        background-repeat: no-repeat
+        background-position: center
+        background-size: cover
+
+        @if $overflow
+          overflow: hidden
+
+=fullWidhtSection
+  +md
+    --intend: 60px
+    width: calc(100% + var(--intend) * 2)
+    margin-left: calc(var(--intend) * -1)
+
+  +sm
+      --intend: 20px
+  
+=customScroll
+  &::-webkit-scrollbar 
+    width: 8px
+
+  &::-webkit-scrollbar-track 
+    background-color: hsl(0, 0%, 95%)
+
+  &::-webkit-scrollbar-thumb 
+    background-color: var(--MainGreen)
+
+    border-radius: 8px
+
+  &::-webkit-scrollbar-thumb:hover 
+    background-color: hsl(149, 77%, 39%)
+      
+
+=hideScrollBar()
+  scrollbar-width: none
+  -ms-overflow-style: none
+  &::-webkit-scrollbar
+    display: none
+      
+=hover($isOnlyDesktop: true) 
+  &:hover 
+    @if $isOnlyDesktop 
+      @media (hover: hover) and (pointer: fine) 
+        @content
+    @else 
+      @content
+
+=line-clamp($lines)
+  -webkit-line-clamp: $lines
+  overflow: hidden
+  display: -webkit-box
+  -webkit-box-orient: vertical

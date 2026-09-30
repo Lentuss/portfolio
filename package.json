@@ -1,0 +1,31 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "base": "/",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "netlify": "npm run build && netlify deploy --dir=dist",
+    "deploy": "npm run build && netlify deploy --prod --dir=dist"
+  },
+  "devDependencies": {
+    "handlebars-helper-svg": "^2.0.2",
+    "vite": "^4.1.0",
+    "vite-plugin-handlebars": "^1.6.0"
+  },
+  "dependencies": {
+    "cannon-es": "^0.20.0",
+    "gsap": "^3.12.5",
+    "lil-gui": "^0.19.2",
+    "lodash": "^4.17.21",
+    "sass": "^1.63.3",
+    "scroll-lock": "^2.1.5",
+    "three": "^0.165.0",
+    "typed.js": "^2.1.0",
+    "vite-plugin-glsl": "^1.3.0",
+    "vite-plugin-live-reload": "^3.0.3"
+  }
+}

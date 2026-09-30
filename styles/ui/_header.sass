@@ -1,0 +1,40 @@
+.header
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 10
+
+    padding: 24px 0
+    background-color: rgb(255, 255, 255, 0.01)
+    mix-blend-mode: difference
+
+    &__inner
+        display: flex
+        gap: 64px
+
+        font-size: 24px
+        color: white
+        text-transform: uppercase
+        +sm
+            gap: 16px
+
+        & a
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out
+
+            &:hover
+                transform: scale(1.05)
+                opacity: 0.8
+.contacts-page-body
+    & .header a:last-child
+        display: none
+.projects-page-body
+    & .header a:nth-child(2)
+        display: none
+
+.project-page-body
+    +sm
+        & .header a
+            display: none
+            &:nth-child(2n)
+                display: block
